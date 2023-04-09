@@ -50,7 +50,7 @@ exports_files(["README.md"])
         name = "xcodeproj-{}".format(simulator_cpu),
         associated_extra_files = ASSOCIATED_EXTRA_FILES,
         bazel_env = BAZEL_ENV,
-        build_mode = "xcode",
+        build_mode = "bazel",
         config = CONFIG,
         default_xcode_configuration = DEFAULT_XCODE_CONFIGURATION,
         extra_files = EXTRA_FILES,
@@ -63,6 +63,7 @@ exports_files(["README.md"])
         tags = ["manual"],
         top_level_targets = XCODEPROJ_TARGETS,
         tvos_simulator_cpus = simulator_cpu,
+        focused_targets = ["//iOSApp/Source:iOSApp"],
         unfocused_targets = UNFOCUSED_TARGETS,
         # watchOS Simulator CPU on Apple silicon doesn't have 'sim_' prefix
         watchos_simulator_cpus = simulator_cpu.removeprefix("sim_"),
