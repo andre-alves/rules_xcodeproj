@@ -226,7 +226,7 @@ extension Generator {
             }
 
             let explicitFileType: String?
-            if node.name == "BUILD" || node.name == "BUILD.bazel" {
+            if node.name == "BUILD" || node.name == "BUILD.bazel" || node.name == "BUCK" {
                 explicitFileType = Xcode.filetype(extension: "py")
             } else if node.name == "Podfile" {
                 explicitFileType = Xcode.filetype(extension: "rb")
