@@ -158,3 +158,7 @@ if [[ -n "${target_ids:-}" ]]; then
       exit 1
   fi
 fi
+
+if [ "$ACTION" == "indexbuild" ]; then
+  PATH=$HOME/.rbenv/shims:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin ./Config/bazel/swift_module_remapper.rb "$output_path"
+fi
