@@ -115,6 +115,8 @@ fi
 
 # Build
 
+export SWIFT_REMAP_OUTPUT_BASE="$output_path"
+
 "$BAZEL_INTEGRATION_DIR/process_bazel_build_log.py" \
   "${bazel_cmd[@]}" \
   build \

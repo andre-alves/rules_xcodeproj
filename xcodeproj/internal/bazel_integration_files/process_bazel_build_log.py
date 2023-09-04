@@ -38,6 +38,13 @@ def _main(command: List[str]) -> None:
     )
     has_relative_diagnostic = False
 
+    def _run_module_remapper():
+        home = os.getenv("HOME")
+        env = os.environ.copy()
+        env["PATH"] = f"{home}/.rbenv/shims:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
+        result = subprocess.run(["./Config/bazel/swift_module_remapper.rb"], shell=True, capture_output=True, text=True, env=env)
+        print(result.stderr)
+
     def _replacement(match: re.Match) -> str:
         message = match.group(0)
 
@@ -95,6 +102,9 @@ def _main(command: List[str]) -> None:
     if process.returncode != 0 and not has_relative_diagnostic:
         print("error: The bazel build failed, please check the report navigator, "
             "which may have more context about the failure.")
+
+    if os.getenv("ACTION") == "indexbuild":
+        _run_module_remapper()
 
     sys.exit(process.returncode)
 
