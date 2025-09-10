@@ -317,6 +317,10 @@ extension Generator.ProcessSwiftArgs {
             ("OTHER_SWIFT_FLAGS", args.joined(separator: " ").pbxProjEscaped)
         )
 
+        buildSettings.append(
+            ("SWIFT_ENABLE_EMIT_CONST_VALUES", "NO")
+        )
+
         return (
             hasDebugInfo,
             clangArgs,
